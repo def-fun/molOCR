@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <title>paste.js</title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.0/normalize.min.css" media="screen" rel="stylesheet" type="text/css" />
+  </head>
+  <style type="text/css">
+    body > div{
+      width: 80%;
+      padding: .5em;
+      margin: 0.5em auto;
+    }
+    .demo, .result{
+      border: solid 1px #999;
+      padding: 0.5em;
+      margin: 1em 0 0 0;
+      box-sizing: contentbox;
+      width: 100%;
+    }
+    .result > img{
+      border: solid 1px #ccc;
+      height: 50px;
+    }
+    .pastable{
+      transition: box-shadow ease .3s;
+    }
+    .pastable:hover{
+      box-shadow: 0 0 3px black;
+    }
+    .pastable.pastable-focus{
+      box-shadow: 0 0 10px black;
+    }
+  </style>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
+  <script type="text/javascript" src="js/paste.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      $('.demo-noninputable').pastableNonInputable();
+      $('.demo-textarea').on('focus', function(){
+        var isFocused = $(this).hasClass('pastable-focus');
+        console && console.log('[textarea] focus event fired! ' + (isFocused ? 'fake onfocus' : 'real onfocus'));
+      }).pastableTextarea().on('blur', function(){
+        var isFocused = $(this).hasClass('pastable-focus');
+        console && console.log('[textarea] blur event fired! ' + (isFocused ? 'fake onblur' : 'real onblur'));
+      });
+      $('.demo-contenteditable').pastableContenteditable();
+      $('.demo').on('pasteImage', function(ev, data){
+        var blobUrl = URL.createObjectURL(data.blob);
+        $('<div class="result">image: ' + data.width + ' x ' + data.height + '<img src="' + data.dataURL +'" ><a href="' + blobUrl + '">' + blobUrl + '</div>').insertAfter(this);
+      }).on('pasteImageError', function(ev, data){
+        alert('Oops: ' + data.message);
+        if(data.url){
+          alert('But we got its url anyway:' + data.url)
+        }
+      }).on('pasteText', function(ev, data){
+        $('<div class="result"></div>').text('text: "' + data.text + '"').insertAfter(this);
+      });
+    });
+  </script>
+  <body>
+    <div>
+      <h1>Paste.js</h1>
+      <p>
+        <a href="https://github.com/layerssss/paste.js">github.com/layerssss/paste.js</a>
+      </p>
+      <div class="demo demo-noninputable">I'm a div, using `$('.demo-noninputable').pastableNonInputable()`.</div>
+      <textarea class="demo demo-textarea">I'm a textarea, using `$('.demo-textarea').pastableTextarea()`.</textarea>
+      <div class="demo demo-contenteditable" contenteditable>I'm a div[contenteditable], using `$('.demo-contenteditable').pastableContenteditable()`.</div>
+    </div>
+  </body>
+</html>
