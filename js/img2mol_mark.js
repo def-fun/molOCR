@@ -26,7 +26,7 @@ var ctx;
 
 function querySmiles(img_blob) {
     $('#smiles').text('加载中...');
-    let data = img_blob, url = 'http://205.185.113.27:5000/image2ctab', xhr = new XMLHttpRequest();
+    let data = img_blob, url = 'http://' + window.location.hostname + ':5000/image2ctab', xhr = new XMLHttpRequest();
     xhr.open('POST', url);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.send(data);
