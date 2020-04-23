@@ -77,7 +77,7 @@ function querySmiles(img_blob) {
 
             } else {
                 $('#smiles').text('上传失败');
-                swal('上传失败', '可能是图片过大，也可能是服务器故障', 'error');
+                swal('上传失败', '可能是图片过大、网络离线或服务器故障', 'error');
             }
         }
     }

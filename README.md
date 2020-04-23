@@ -1,61 +1,23 @@
-# [HTML5 Boilerplate](http://html5boilerplate.com)
+# molOCR
 
-HTML5 Boilerplate is a professional front-end template for building fast,
-robust, and adaptable web apps or sites.
+v0.0.0.0.3
+使用SDF作为交互文件：
++ 可以保持重绘结构与图片中的结构基本一致
++ 识别到结构式时，根据SDF中包含的坐标标记出图片中的结构式(需要[修改版的chembl_beaker](https://github.com/def-fun/chembl_beaker/tree/v1.1)支持)
 
-This project is the product of many years of iterative development and combined
-community knowledge. It does not impose a specific development philosophy or
-framework, so you're free to architect your code in the way that you want.
+## Feature
+- 识别率还行😂
+- 重绘结构与原始结构的排版基本保持一致
+- 支持图片文件拖放
+- 识别到结构式时有红框标记
 
-* Source: [https://github.com/h5bp/html5-boilerplate](https://github.com/h5bp/html5-boilerplate)
-* Homepage: [http://html5boilerplate.com](http://html5boilerplate.com)
-* Twitter: [@h5bp](http://twitter.com/h5bp)
+## Tips
+- 截图快捷键: QQ(Ctrl+Alt+A), 微信(Alt+A)
+- 只截取一个结构式时，识别准确率最高
+- 识别失败时，尝试放大文献后再截图识别
+- 单击文本框即自动复制
+- 会自动复制第一个MOL到剪切板
+- ChemDraw中Ctrl+Shift+K快速格式化结构式, 可多次使用
 
-
-## Quick start
-
-Choose one of the following options:
-
-1. Download the latest stable release from
-   [html5boilerplate.com](http://html5boilerplate.com/) or a custom build from
-   [Initializr](http://www.initializr.com).
-2. Clone the git repo — `git clone
-   https://github.com/h5bp/html5-boilerplate.git` - and checkout the tagged
-   release you'd like to use.
-
-
-## Features
-
-* HTML5 ready. Use the new elements with confidence.
-* Cross-browser compatible (Chrome, Opera, Safari, Firefox 3.6+, IE6+).
-* Designed with progressive enhancement in mind.
-* Includes [Normalize.css](http://necolas.github.com/normalize.css/) for CSS
-  normalizations and common bug fixes.
-* The latest [jQuery](http://jquery.com/) via CDN, with a local fallback.
-* The latest [Modernizr](http://modernizr.com/) build for feature detection.
-* IE-specific classes for easier cross-browser control.
-* Placeholder CSS Media Queries.
-* Useful CSS helpers.
-* Default print CSS, performance optimized.
-* Protection against any stray `console.log` causing JavaScript errors in
-  IE6/7.
-* An optimized Google Analytics snippet.
-* Apache server caching, compression, and other configuration defaults for
-  Grade-A performance.
-* Cross-domain Ajax and Flash.
-* "Delete-key friendly." Easy to strip out parts you don't need.
-* Extensive inline and accompanying documentation.
-
-
-## Documentation
-
-Take a look at the [documentation table of contents](doc/TOC.md). This
-documentation is bundled with the project, which makes it readily available for
-offline reading and provides a useful starting point for any documentation you
-want to write about your project.
-
-
-## Contributing
-
-Anyone and everyone is welcome to [contribute](CONTRIBUTING.md). Hundreds of
-developers have helped make the HTML5 Boilerplate what it is today.
+## Todo
+- 加个网页版的结构式编辑器
