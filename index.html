@@ -23,7 +23,8 @@
     }
 
     .demo {
-        width: 600px;
+        width: 620px;
+        height: 320px;
     }
 
     .result > img {
@@ -44,23 +45,21 @@
     }
 
     .box {
-        width: 600px;
-        height: 300px;
         color: #bbb;
-        padding: 5px;
+        padding: 10px;
     }
 </style>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
 <script type="text/javascript" src="js/paste.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/img2mol.js"></script>
 <script type="text/javascript">
     $(function () {
         $('.demo-noninputable').pastableNonInputable();
 
         $('.demo').on('pasteImage', function (ev, data) {
             querySmiles(data.blob);
-            $('.box').html('<img src="' + data.dataURL + '" style="max-height:290px; max-width:440px" alt=""> ');
-            $('#debug').text('粘贴了图片: 宽' + data.width + ', 高' + data.height + ', Size' + data.blob.size);
+            $('.box').html('<img src="' + data.dataURL + '" style="max-height:300px; max-width:600px" alt=""> ');
+            $('#debug').text('粘贴了图片: 宽' + data.width + ', 高 ' + data.height + ', 大小 ' + data.blob.size);
         }).on('pasteImageError', function (ev, data) {
             alert('Oops: ' + data.message);
             if (data.url) {
@@ -70,23 +69,53 @@
             // $('<div class="result"></div>').text('text: "' + data.text + '"').insertAfter(this);
             $('#debug').text('粘贴了文本: ' + data.text);
         });
+
+        var imgContainer;
+        imgContainer = document.getElementById("imgContainer");
+        imgContainer.ondragover = function (e) {
+            e.preventDefault();
+            this.style.borderColor = 'red';
+        };
+        imgContainer.ondrop = function (e) {
+            e.preventDefault();
+            this.style.borderColor = 'black';
+            if (e.dataTransfer.files.length > 1) {
+                swal('拖放文件过多', '目前每次只支持拖放一张图片', 'error');
+                $('#debug').text('拖放文件过多');
+            } else {
+                var fileObj = e.dataTransfer.files[0];
+                if (fileObj.type.indexOf('image') !== -1) {
+                    $('#debug').text('拖放了图片: "' + fileObj.name + '"  大小: ' + fileObj.size);
+                    querySmiles(fileObj);
+                    var blob = window.URL.createObjectURL(fileObj);
+                    $('.box').html('<img src="' + blob + '" style="max-height:300px; max-width:600px" />');
+                } else {
+                    $('#debug').text('拖放了非图片文件: "' + fileObj.name + '"');
+                    swal('拖放了非图片文件', '只支持拖放图片文件', 'error');
+                }
+            }
+
+
+        };
+
+
     });
 
 </script>
 <body>
 
 <div>
-    <h1>化学结构式识别工具 V0.0.0.0.1</h1>
-    <div class="demo demo-noninputable pastable">
+    <h1>化学结构式识别工具 V0.0.0.0.2</h1>
+    <div class="demo demo-noninputable pastable" id="imgContainer">
         <div class="box">
             <h3>使用方法：</h3>
             <p>step.0 在电脑上使用Chrome/Firefox等现代浏览器访问此网页</p>
-            <p>step.1 使用QQ/微信等截图软件, 截取文献中的结构式(只含一个分子时识别率最高)</p>
+            <p>step.1 使用QQ/微信等截图软件, 截取文献中的结构式</p>
             <p>step.2 单击此处，在此处(Ctrl+V)粘贴截图</p>
-            <p>step.3 单击文本框中的SMILES结构式(单击即可, 会自动复制)</p>
-            <p>step.4 在KingDraw中右键 选择性粘贴 > SMILES(暂无快捷键)</p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在ChemDraw中右键 paste special > SMILES
-                (快捷键Alt+Ctrl+P)</p>
+            <p>step.3 单击文本框中的MOL文本(单击即可, 会自动复制)</p>
+            <p>step.4 在KingDraw中右键 选择性粘贴 > MOL V2000(暂无快捷键)</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在ChemDraw中右键 paste special > MOL TEXT
+                (Alt+Shift+Ctrl+P)</p>
         </div>
     </div>
     <div style="background: #b3d4fc">
@@ -98,11 +127,20 @@
         <h4>Feature</h4>
         <ul type="circle">
             <li>识别率还行😂</li>
-            <li>只识别到一个化合物时，自动复制SMILES到剪切板</li>
+            <li>重绘结构与原始结构的排版基本保持一致</li>
+            <li>支持图片文件拖放</li>
+        </ul>
+        <h4>Tips</h4>
+        <ul type="circle">
+            <li>截图快捷键: QQ(Ctrl+Alt+A), 微信(Alt+A)</li>
+            <li>只截取一个结构式时，识别准确率最高</li>
+            <li>识别失败时，尝试放大文献后再截图识别</li>
+            <li>单击文本框即自动复制</li>
+            <li>会自动复制第一个MOL到剪切板</li>
+            <li>ChemDraw中Ctrl+Shift+K快速格式化结构式, 可多次使用</li>
         </ul>
         <h4>Todo</h4>
         <ul type="circle">
-            <li>使用CTAB保持重绘结构与图片结构一致</li>
             <li>加个网页版的结构式编辑器</li>
         </ul>
     </div>
