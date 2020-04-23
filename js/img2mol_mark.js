@@ -26,10 +26,11 @@ var ctx;
 
 function querySmiles(img_blob) {
     $('#smiles').text('加载中...');
-    let data = img_blob, url = 'http://' + window.location.hostname + ':5000/image2ctab', xhr = new XMLHttpRequest();
+    let url = 'http://' + window.location.hostname + ':5000/image2ctab';
+    let xhr = new XMLHttpRequest();
     xhr.open('POST', url);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    xhr.send(data);
+    xhr.send(img_blob);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
