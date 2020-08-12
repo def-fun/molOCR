@@ -1,7 +1,9 @@
-function oCopy(obj) {
+function playWithThisMolFile(obj) {
     obj.select();
     document.execCommand("Copy");
     // swal("复制成功！", "在化学结构式编辑软件中粘贴为SMILES", "success");
+    console.log(obj);
+    redrawMolecular(obj.textContent);
 }
 
 
@@ -27,7 +29,7 @@ var ctx;
 function querySmiles(img_blob) {
     $('#smiles').text('加载中...');
     // let url = 'http://' + window.location.hostname + ':5000/image2ctab';
-    let url = 'http://47.97.40.225:17005';
+    let url = 'http://47.97.40.225:17005/image2ctab';
     let xhr = new XMLHttpRequest();
     xhr.open('POST', url);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -63,7 +65,7 @@ function querySmiles(img_blob) {
                         swal('未解析出结构式', '请确保图片中包含较为清晰的化学结构式', 'error');
                     } else {
                         for (var i = 0; i < mols.length; i++) {
-                            list += '<li><textarea onclick="oCopy(this)" rows="1" cols="30" readonly>' + mols[i] + '</textarea></li>';
+                            list += '<li><textarea onclick="playWithThisMolFile(this)" rows="1" cols="30" readonly>' + mols[i] + '</textarea></li>';
                             mark(ctx, i + 1, mols[i]);
                         }
                         let html = '单击文本框以复制mol结构式：<ol>' + list + '</ol>';

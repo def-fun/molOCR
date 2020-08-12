@@ -115,6 +115,23 @@
         }
     }
 </script>
+<script type="application/javascript">
+    // ACS Document 1996
+    ChemDoodle.DEFAULT_STYLES.bondLength_2D = 14.4;
+    ChemDoodle.DEFAULT_STYLES.bonds_width_2D = .6;
+    ChemDoodle.DEFAULT_STYLES.bonds_saturationWidthAbs_2D = 2.6;
+    ChemDoodle.DEFAULT_STYLES.bonds_hashSpacing_2D = 2.5;
+    ChemDoodle.DEFAULT_STYLES.atoms_font_size_2D = 10;
+    ChemDoodle.DEFAULT_STYLES.atoms_font_families_2D = ['Helvetica', 'Arial', 'sans-serif'];
+    ChemDoodle.DEFAULT_STYLES.atoms_displayTerminalCarbonLabels_2D = true;
+    ChemDoodle.DEFAULT_STYLES.atoms_useJMOLColors = true;
+
+    function redrawMolecular(molFile) {
+        let myCanvas = new ChemDoodle.ViewerCanvas('ChemDoodle', 150, 150);
+        let mol = ChemDoodle.readMOL(molFile);
+        myCanvas.loadMolecule(mol);
+    }
+</script>
 <body>
 
 <div>
@@ -131,6 +148,7 @@
                 (Alt+Shift+Ctrl+P)</p>
         </div>
     </div>
+    <canvas id="ChemDoodle"></canvas>
     <div style="background: #b3d4fc">
         <p><span id="debug"></span></p>
         <p><span id="smiles"></span></p>
@@ -159,6 +177,7 @@
         </ul>
     </div>
 </div>
+
 </body>
 
 </html>
