@@ -36,13 +36,15 @@ var canv;
 
 
 function onDown(e) {
-    // console.log(e);
+    console.log(e);
     var mx = e.layerX;
     var my = e.layerY;
     for (var i = 0; i < eleArr.length; i++) {
         if (mx > eleArr[i].x1 && mx < eleArr[i].x2 && my > eleArr[i].y1 && my < eleArr[i].y2) {
-            console.log('click on',eleArr[i].id);
+            console.log('click on', eleArr[i].id);
             redrawMolecular(eleArr[i].file)
+        }else {
+            // sketcher.clear();
         }
     }
 }
@@ -57,6 +59,8 @@ function querySmiles(img_blob) {
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.send(img_blob);
     xhr.onreadystatechange = function () {
+        mols = [];
+        eleArr = [];
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 var blob = window.URL.createObjectURL(img_blob);
