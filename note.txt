@@ -1,0 +1,5 @@
+https://molview.org/
+分子式: Sketcher.molpad.mol.atoms
+加载mol file: Sketcher.loadMOL(molFIle)
+清空画板: Sketcher.clear()
+格式化结构: Sketcher.clean()
