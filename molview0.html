@@ -370,8 +370,10 @@ along with MolView.  If not, see <http://www.gnu.org/licenses/>.
                         <div class="horizontal-separator"></div>
                         <div id="action-mp-clean" class="tool-button tool-button-horizontal"
                              title="Clean structure"></div>
-                        <div id="action-resolve" class="tool-button tool-button-horizontal" title="Update 3D view">2D to
-                            3D
+                        <!--                        <div id="action-resolve" class="tool-button tool-button-horizontal" title="Update 3D view">2D to-->
+                        <!--                            3D-->
+                        <!--                        </div>-->
+                        <div id="copy-molecule" class="tool-button tool-button-horizontal" title="复制结构式到剪切板"> 复制
                         </div>
                     </div>
                 </div>
@@ -429,8 +431,12 @@ along with MolView.  If not, see <http://www.gnu.org/licenses/>.
                             alert('But we got its url anyway:' + data.url)
                         }
                     }).on('pasteText', function (ev, data) {
-                        // $('<div class="result"></div>').text('text: "' + data.text + '"').insertAfter(this);
-                        $('#debug').text('粘贴了文本: ' + data.text);
+                        if (data.text.length < 200) {
+                            $('#debug').text('粘贴了文本: ' + data.text);
+                        } else {
+                            $('#debug').text('粘贴了文本: ' + data.text.substr(0, 100) + '......' + data.text.substr(-100));
+                        }
+
                     });
 
                     var imgContainer = document.getElementById("imgContainer");
@@ -605,7 +611,7 @@ along with MolView.  If not, see <http://www.gnu.org/licenses/>.
 <div id="dialog-overlay" class="dialog-overlay">
     <div id="dialog-click-area">
         <div id="dialog-wrapper" style="">
-<!--            曲线救国，关闭dialog-->
+            <!--            曲线救国，关闭dialog-->
             <script>
                 $(document).ready
                 {
