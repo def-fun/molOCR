@@ -360,18 +360,18 @@ body {
     position: absolute
 }
 
-#menu {
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 40px
-}
+/*#menu {*/
+/*    z-index: 1;*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*    height: 40px*/
+/*}*/
 
-.no-menu > #menu {
-    display: none
-}
+/*.no-menu > #menu {*/
+/*    display: none*/
+/*}*/
 
 .no-menu > #progress {
     top: 0
@@ -383,7 +383,7 @@ body {
 
 #content {
     position: absolute;
-    top: 41px;
+    top: 0px;
     left: 0;
     right: 0;
     bottom: 0
