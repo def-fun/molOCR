@@ -3,3 +3,8 @@ https://molview.org/
 加载mol file: Sketcher.loadMOL(molFIle)
 清空画板: Sketcher.clear()
 格式化结构: Sketcher.clean()
+
+todo:
+OCR模块中的图片支持拖动
+支持图片文件上传
+windows客户端截图识别工具
