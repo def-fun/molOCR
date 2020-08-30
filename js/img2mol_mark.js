@@ -1,15 +1,15 @@
+var eleArr = []; // item = {'file': '...', id: 1, x1: 1, x2: 2, y1: 3, y2: 4}
+var mols = [];
+var ctx;
+var raw_img_data;
+
 function playWithThisMolFile(obj) {
     obj.select();
     document.execCommand("Copy");
     // swal("复制成功！", "在化学结构式编辑软件中粘贴为SMILES", "success");
     console.log(obj);
     Sketcher.loadMOL(obj.textContent);
-
 }
-
-var eleArr = [];
-
-// item = {'file': '', id: 1, x1: 1, x2: 2, y1: 3, y2: 4}
 
 function mark(ctx, num, sdfText) {
     // console.log(ctx, num, sdfText);
@@ -30,21 +30,23 @@ function mark(ctx, num, sdfText) {
     eleArr.push({'file': sdfText, id: num, x1: x1, x2: x2, y1: y1, y2: y2})
 }
 
-var mols = [];
-
-var ctx;
-var canv;
-
-
 function onDown(e) {
     console.log(e);
     var mx = e.layerX;
     var my = e.layerY;
     for (var i = 0; i < eleArr.length; i++) {
         if (mx > eleArr[i].x1 && mx < eleArr[i].x2 && my > eleArr[i].y1 && my < eleArr[i].y2) {
-            console.log('click on', eleArr[i].id);
-            Sketcher.loadMOL(eleArr[i].file);
-        }else {
+            let ele = eleArr[i];
+            console.log('click on', ele.id);
+            Sketcher.loadMOL(ele.file);
+            ctx.putImageData(raw_img_data, 0, 0);
+            ctx.lineWidth = 4;
+            ctx.setLineDash([8, 8]);
+            ctx.strokeStyle = 'red';
+            let itv = 2;
+            ctx.strokeRect(ele.x1 - itv, ele.y1 - itv, ele.x2 - ele.x1 + itv * 2, ele.y2 - ele.y1 + itv * 2);
+            ctx.setLineDash([]);
+        } else {
             // sketcher.clear();
         }
     }
@@ -76,7 +78,7 @@ function querySmiles(img_blob) {
 
                     ctx = document.getElementById('cvs').getContext('2d');
                     ctx.drawImage(this, 0, 0, imgW, imgH);
-                    canv = document.getElementById('cvs');
+                    var canv = document.getElementById('cvs');
                     canv.addEventListener("mousedown", onDown);
                     // console.log(xhr.responseText);
                     var tmp = xhr.responseText.split('$$$$');
@@ -96,6 +98,7 @@ function querySmiles(img_blob) {
                             mark(ctx, i + 1, mols[i]);
 
                         }
+                        raw_img_data = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
                         let html = '单击文本框以复制mol结构式：<ol>' + list + '</ol>';
                         $('#smiles').html(html);
                         if (mols.length >= 1) { // 默认复制第一个mol
