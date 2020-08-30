@@ -312,21 +312,24 @@ Query parameters:
 						<div id="molpad-canvas-wrapper"></div>
 					</div>
 				</div>
-				<div id="model" >
-					<!-- Get preferred model background color from localStorage -->
-					<script type="text/javascript">
-						if(localStorage && localStorage["model.background"])
-						{
-							var c = localStorage["model.background"];
-							$("#model").css("background", c == "gray" ? "#ccc" : c);
-						}
-					</script>
-					<div id="chemdoodle" class="render-engine" style="display: none;">
-						<canvas id="chemdoodle-canvas"></canvas>
-					</div>
-					<div id="jsmol" class="render-engine" style="display: none;"></div>
-					<div id="glmol" class="render-engine" style="display: none;"></div>
-				</div>
+<!--				<div id="model" >-->
+                <!--					&lt;!&ndash; Get preferred model background color from localStorage &ndash;&gt;-->
+                <!--					<script type="text/javascript">-->
+                <!--						if(localStorage && localStorage["model.background"])-->
+                <!--						{-->
+                <!--							var c = localStorage["model.background"];-->
+                <!--							$("#model").css("background", c == "gray" ? "#ccc" : c);-->
+                <!--						}-->
+                <!--					</script>-->
+                <!--					<div id="chemdoodle" class="render-engine" style="display: none;">-->
+                <!--						<canvas id="chemdoodle-canvas"></canvas>-->
+                <!--					</div>-->
+                <!--					<div id="jsmol" class="render-engine" style="display: none;"></div>-->
+                <!--					<div id="glmol" class="render-engine" style="display: none;"></div>-->
+                <!--				</div>-->
+                <div id="ocr">
+                    <p>text text</p>
+                </div>
 			</div>
 			<div id="search-layer" class="layer" style="display: none;">
 				<div class="btn-group-bar">
