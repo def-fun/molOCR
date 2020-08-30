@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html itemscope itemtype="http://schema.org/Thing">
 
@@ -37,393 +36,591 @@ Query parameters:
 - bg = black || gray || white
 -->
 
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta name="viewport" content="width=device-width, user-scalable=no" />
-		<meta name="mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-capable" content="yes" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no"/>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
 
-		<link rel="shortcut icon" href="favicon-32x32.png" />
-		<title>MolView</title>		<meta name="author" content="Herman Bergwerf" />
-		<meta name="keywords" content="molview,free,chemistry,app,molecules,proteins,crystals,spectroscopy" />
+    <link rel="shortcut icon" href="favicon-32x32.png"/>
+    <title>MolView</title>
+    <meta name="author" content="Herman Bergwerf"/>
+    <meta name="keywords" content="molview,free,chemistry,app,molecules,proteins,crystals,spectroscopy"/>
 
-		<!-- Open Graph + Schema.org + Twitter Card -->
-		<meta name="twitter:card" content="summary">
-		<meta name="twitter:site" content="@molview">
-		<meta property="og:type" content="website" />
-		<meta property="og:site_name" content="MolView" />
-		<meta property="og:url" content="http://molview.org/" /><meta name="twitter:title" property="og:title" content="MolView" /><meta itemprop="name" content="MolView" /><meta name="description" content="MolView is an intuitive, Open-Source web-application to make science and education more awesome!" /><meta name="twitter:description" property="og:description" content="MolView is an intuitive, Open-Source web-application to make science and education more awesome!" /><meta itemprop="description" content="MolView is an intuitive, Open-Source web-application to make science and education more awesome!" /><meta property="og:image" content="http://molview.org/img/image.png" /><meta itemprop="image" content="http://molview.org/img/image.png" /><meta name="twitter:image" content="http://molview.org/img/image.png" /><meta itemprop="sameAs" content="" />
-		<!-- CSS -->
-		<link type="text/css" rel="stylesheet" href="./font-awesome.css" />
-		<link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700" />
-		<link type="text/css" rel="stylesheet" href="build/molview-app.min.css" />
-		<link id="theme-stylesheet" type="text/css" rel="stylesheet" href="build/molview-desktop.min.css" media="screen" />
-		<!-- JS -->
-		<script type="text/javascript" src="build/molview-base.min.js"></script>
-		<script type="text/javascript" src="build/molview-applib.min.js"></script>
-		<script type="text/javascript" src="build/molview-datasets.min.js"></script>
-		<script type="text/javascript" src="build/molview-core.min.js"></script>
-		<script type="text/javascript" src="build/molview-molpad.min.js"></script>
-		<script type="text/javascript" src="build/molview-app.min.js"></script>
+    <!-- Open Graph + Schema.org + Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@molview">
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="MolView"/>
+    <meta property="og:url" content="http://molview.org/"/>
+    <meta name="twitter:title" property="og:title" content="MolView"/>
+    <meta itemprop="name" content="MolView"/>
+    <meta name="description"
+          content="MolView is an intuitive, Open-Source web-application to make science and education more awesome!"/>
+    <meta name="twitter:description" property="og:description"
+          content="MolView is an intuitive, Open-Source web-application to make science and education more awesome!"/>
+    <meta itemprop="description"
+          content="MolView is an intuitive, Open-Source web-application to make science and education more awesome!"/>
+    <meta property="og:image" content="http://molview.org/img/image.png"/>
+    <meta itemprop="image" content="http://molview.org/img/image.png"/>
+    <meta name="twitter:image" content="http://molview.org/img/image.png"/>
+    <meta itemprop="sameAs" content=""/>
+    <!-- CSS -->
+    <link type="text/css" rel="stylesheet" href="./font-awesome.css"/>
+    <link type="text/css" rel="stylesheet"
+          href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700"/>
+    <link type="text/css" rel="stylesheet" href="build/molview-app.min.css"/>
+    <link id="theme-stylesheet" type="text/css" rel="stylesheet" href="build/molview-desktop.min.css" media="screen"/>
+    <!-- JS -->
+    <script type="text/javascript" src="build/molview-base.min.js"></script>
+    <script type="text/javascript" src="build/molview-applib.min.js"></script>
+    <script type="text/javascript" src="build/molview-datasets.min.js"></script>
+    <script type="text/javascript" src="build/molview-core.min.js"></script>
+    <script type="text/javascript" src="build/molview-molpad.min.js"></script>
+    <script type="text/javascript" src="build/molview-app.min.js"></script>
 
-		<!-- PHP data injection -->
-		<script type="text/javascript">
-			Model.JSmol.hq = true;
-			MolView.touch = false;
-			MolView.mobile = false;
-			MolView.layout = "layout-vsplit";
+    <!-- PHP data injection -->
+    <script type="text/javascript">
+        Model.JSmol.hq = true;
+        MolView.touch = false;
+        MolView.mobile = false;
+        MolView.layout = "layout-vsplit";
 
-			Request.CIR.available = true;
+        Request.CIR.available = true;
 
-			if(!Detector.canvas)
-			{
-				window.location = window.location.origin + window.location.pathname + "htmlCanvas";
-			}
-		</script>
+        if (!Detector.canvas) {
+            window.location = window.location.origin + window.location.pathname + "htmlCanvas";
+        }
+    </script>
 
-		<!-- Google Analytics -->
-		<!-- <script>
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-			ga('create', 'UA-49088779-3', 'molview.org');
-			ga('send', 'pageview');
-		</script> -->
-	</head>
-	<body >
-		<svg width="0" height="0">
-			<filter id="pubchemImageFilter" height="1" width="1" y="0" x="0" color-interpolation-filters="sRGB">
-				<feColorMatrix
-					in="SourceGraphic"
-					type="matrix"
-					values="1.05 0    0    0 0
+    <!-- Google Analytics -->
+    <!-- <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-49088779-3', 'molview.org');
+        ga('send', 'pageview');
+    </script> -->
+
+    <!--  OCR模块  -->
+    <link rel="stylesheet" href="css/sweetalert.css"/>
+    <script type="text/javascript" src="js/vendor/sweetalert.min.js"></script>
+    <script type="text/javascript" src="js/vendor/jquery-1.10.2.min.js"></script>
+    <link rel="stylesheet" href="js/uis/jquery-ui-1.11.4.css" type="text/css">
+    <script type="text/javascript" src="js/paste.js"></script>
+    <script type="text/javascript" src="js/img2mol_mark.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.demo-noninputable').pastableNonInputable();
+
+            $('.demo').on('pasteImage', function (ev, data) {
+                querySmiles(data.blob);
+                $('.box').html('<img src="' + data.dataURL + '" style="max-height:300px; max-width:600px" alt=""> ');
+                $('#debug').text('粘贴了图片: 宽' + data.width + ', 高 ' + data.height + ', 大小 ' + data.blob.size);
+            }).on('pasteImageError', function (ev, data) {
+                alert('Oops: ' + data.message);
+                if (data.url) {
+                    alert('But we got its url anyway:' + data.url)
+                }
+            }).on('pasteText', function (ev, data) {
+                // $('<div class="result"></div>').text('text: "' + data.text + '"').insertAfter(this);
+                $('#debug').text('粘贴了文本: ' + data.text);
+            });
+
+            var imgContainer = document.getElementById("imgContainer");
+            imgContainer.ondragover = function (e) {
+                e.preventDefault();
+                this.style.borderColor = 'red';
+            };
+            imgContainer.ondrop = function (e) {
+                e.preventDefault();
+                this.style.borderColor = 'black';
+                if (e.dataTransfer.files.length > 1) {
+                    swal('拖放文件过多', '目前每次只支持拖放一张图片', 'error');
+                    $('#debug').text('拖放文件过多');
+                } else {
+                    var fileObj = e.dataTransfer.files[0];
+                    if (fileObj.type.indexOf('image') !== -1) {
+                        $('#debug').text('拖放了图片: "' + fileObj.name + '"  大小: ' + fileObj.size);
+                        querySmiles(fileObj);
+                        var blob = window.URL.createObjectURL(fileObj);
+                        $('.box').html('<img src="' + blob + '" />'); // " style="max-height:300px; max-width:600px"
+
+                    } else {
+                        $('#debug').text('拖放了非图片文件: "' + fileObj.name + '"');
+                        swal('拖放了非图片文件', '只支持拖放图片文件', 'error');
+                    }
+                }
+            };
+        });
+        // test
+        let pyridineMolFile = 'Molecule Name\n  CHEMDOOD01011121543D 0   0.00000     0.00000     0\n[Insert Comment Here]\n  6  6  0  0  0  0  0  0  0  0  1 V2000\n    0.0000    1.0000    0.0000   N 0  0  0  0  0  0  0  0  0  0  0  0\n   -0.8660    0.5000    0.0000   C 0  0  0  0  0  0  0  0  0  0  0  0\n   -0.8660   -0.5000    0.0000   C 0  0  0  0  0  0  0  0  0  0  0  0\n    0.0000   -1.0000    0.0000   C 0  0  0  0  0  0  0  0  0  0  0  0\n    0.8660   -0.5000    0.0000   C 0  0  0  0  0  0  0  0  0  0  0  0\n    0.8660    0.5000    0.0000   C 0  0  0  0  0  0  0  0  0  0  0  0\n  1  2  2  0  0  0  0\n  2  3  1  0  0  0  0\n  3  4  2  0  0  0  0\n  4  5  1  0  0  0  0\n  5  6  2  0  0  0  0\n  6  1  1  0  0  0  0\nM  END';
+
+    </script>
+    <style type="text/css">
+        /*body > div {*/
+        /*    width: 80%;*/
+        /*    padding: .5em;*/
+        /*    margin: 0.5em auto;*/
+        /*}*/
+
+        .demo, .result {
+            border: solid 1px #999;
+            padding: 0.5em;
+            margin: 1em 0 0 0;
+            width: 100%;
+        }
+
+        .demo {
+            width: 620px;
+            height: 320px;
+            overflow: auto;
+        }
+
+        .result > img {
+            border: solid 1px #ccc;
+            height: 50px;
+        }
+
+        .pastable {
+            transition: box-shadow ease .3s;
+        }
+
+        .pastable:hover {
+            box-shadow: 0 0 3px black;
+        }
+
+        .pastable.pastable-focus {
+            box-shadow: 0 0 10px black;
+        }
+
+        .box {
+            color: #bbb;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<svg width="0" height="0">
+    <filter id="pubchemImageFilter" height="1" width="1" y="0" x="0" color-interpolation-filters="sRGB">
+        <feColorMatrix
+                in="SourceGraphic"
+                type="matrix"
+                values="1.05 0    0    0 0
 					        0    1.05 0    0 0
 					        0    0    1.05 0 0
 					        0    0    0    1 0"></feColorMatrix>
-			</filter>
-		</svg>
-		<div id="progress">
-			<canvas id="progress-canvas"></canvas>
-		</div>
-		<div id="menu">
-			<div id="menu-bar" class="hstack">
-				<div id="brand"></div>
-				<form id="search" class="hstack" action="index.php">
-					<div class="input-wrapper">
-						<button><i class="fa fa-search"></i></button>
-						<input id="search-input" name="q" type="text" autocomplete="off" spellcheck="false" />
-						<div class="input-focus"></div>
-						<div id="search-dropdown" class="dropdown">
-							<a class="dropdown-toggle"></a>
-							<ul class="dropdown-menu dropdown-left">
-								<li class="menu-item"><a id="action-show-search-layer">Show last search results</a></li>
-								<li class="menu-header">Advanced search</li>
-								<li class="menu-item"><a id="action-search-pubchem">PubChem Compounds</a></li>
-								<li class="menu-item"><a id="action-search-rcsb">RCSB Protein Data Bank</a></li>
-								<li class="menu-item"><a id="action-search-cod">Crystallography Open Database</a></li>
-							</ul>
-						</div>
-					</div>
-				</form>
-				<ul id="main-menu" class="hstack">
-					<li id="molview-dropdown" class="dropdown">
-						<a class="dropdown-toggle">MolView</a>
-						<ul class="dropdown-menu">
-							<li class="menu-header">Layout</li>
-							<li id="layout-menu">
-								<a id="action-layout-model" ></a>
-								<a id="action-layout-hsplit" ></a>
-								<br/>
-								<a id="action-layout-vsplit" ></a>
-								<a id="action-layout-sketcher" ></a>
-							</li>
-							<li class="menu-header">Theme</li>
-							<li class="menu-item"><a id="action-theme-desktop" class="radio checked">Desktop</a></li>
-							<li class="menu-item"><a id="action-theme-touch" class="radio">Touch</a></li>
-							<li class="menu-header">Information</li>
-							<li class="menu-item"><a id="action-help">Help</a></li>
-							<li class="menu-item"><a id="action-about">About</a></li>
-						</ul>
-					</li>
-					<li id="tools-dropdown" class="dropdown">
-						<a class="dropdown-toggle">Tools</a>
-						<ul class="dropdown-menu">
-							<li class="menu-header">Link</li>
-							<!-- <li class="menu-item"><a id="action-share">Share</a></li> -->
-							<li class="menu-item"><a id="action-embed">Embed</a></li>
-							<li class="menu-header">Export</li>
-							<li class="menu-item"><a id="action-export-sketcher-png">Structural formula image</a></li>
-							<li class="menu-item"><a id="action-export-model-png">3D model image</a></li>
-							<li class="menu-item"><a id="action-export-model">MOL file</a></li>
-							<li class="menu-header">Chemical data</li>
-							<li class="menu-item"><a id="action-data-infocard">Information card</a></li>
-							<li class="menu-item"><a id="action-data-spectra">Spectroscopy</a></li>
-							<li class="menu-item"><a id="model-source" class="disabled" target="_blank">3D model source</a></li>
-							<li class="menu-header">Advanced search</li>
-							<li class="menu-item"><a id="action-search-similarity">Similarity</a></li>
-							<li class="menu-item"><a id="action-search-substructure">Substructure</a></li>
-							<li class="menu-item"><a id="action-search-superstructure">Superstructure</a></li>
-						</ul>
-					</li>
-					<li id="model-dropdown" class="dropdown">
-						<a class="dropdown-toggle">Model</a>
-						<ul class="dropdown-menu">
-							<li class="menu-item"><a id="action-model-reset">Reset</a></li>
-							<li class="menu-header">Representation</li>
-							<li class="menu-item"><a id="action-model-balls" class="r-mode radio checked">Ball and Stick</a></li>
-							<li class="menu-item"><a id="action-model-stick" class="r-mode radio">Stick</a></li>
-							<li class="menu-item"><a id="action-model-vdw" class="r-mode radio">van der Waals Spheres</a></li>
-							<li class="menu-item"><a id="action-model-wireframe" class="r-mode radio">Wireframe</a></li>
-							<li class="menu-item"><a id="action-model-line" class="r-mode radio">Line</a></li>
-							<li class="menu-header">Background</li>
-							<li class="menu-item"><a id="action-model-bg-black" class="model-bg radio checked" >Black</a></li>
-							<li class="menu-item"><a id="action-model-bg-gray" class="model-bg radio" >Gray</a></li>
-							<li class="menu-item"><a id="action-model-bg-white" class="model-bg radio" >White</a></li>
-							<li class="menu-header">Engine</li>
-							<li class="menu-item"><a id="action-engine-glmol" class="radio checked">GLmol</a></li>
-							<li class="menu-item"><a id="action-engine-jmol" class="radio">Jmol</a></li>
-							<li class="menu-item"><a id="action-engine-cdw" class="radio">ChemDoodle</a></li>
-							<li class="menu-header">Crystallography</li>
-							<li class="menu-item"><a id="action-cif-unit-cell">Load unit cell</a></li>
-							<li class="menu-item"><a id="action-cif-cubic-supercell">Load 2&times;2&times;2 supercell</a></li>
-							<li class="menu-item"><a id="action-cif-flat-supercell">Load 1&times;3&times;3 supercell</a></li>
-						</ul>
-					</li>
-					<li id="protein-dropdown" class="dropdown">
-						<a class="dropdown-toggle">Protein</a>
-						<ul class="dropdown-menu">
-							<li class="menu-item"><a id="action-bio-assembly" class="check">Show bio assembly</a></li>
-							<li class="menu-header">Chain representation</li>
-							<li class="menu-item"><a id="action-chain-type-ribbon" class="chain-type radio checked">Ribbon</a></li>
-							<li class="menu-item"><a id="action-chain-type-cylinders" class="chain-type radio">Cylinder and plate</a></li>
-							<li class="menu-item"><a id="action-chain-type-btube" class="chain-type radio">B-factor tube</a></li>
-							<li class="menu-item"><a id="action-chain-type-ctrace" class="chain-type radio">C-alpha trace</a></li>
-							<li class="menu-divider"></li>
-							<li class="menu-item"><a id="action-chain-type-bonds" class="check">Bonds</a></li>
-							<li class="menu-header">Chain color scheme</li>
-							<li class="menu-item"><a id="action-chain-color-ss" class="chain-color radio checked">Secondary structure</a></li>
-							<li class="menu-item"><a id="action-chain-color-spectrum" class="chain-color radio">Spectrum</a></li>
-							<li class="menu-item"><a id="action-chain-color-chain" class="chain-color radio">Chain</a></li>
-							<li class="menu-item"><a id="action-chain-color-residue" class="chain-color radio">Residue</a></li>
-							<li class="menu-item"><a id="action-chain-color-polarity" class="chain-color radio">Polarity</a></li>
-							<li class="menu-item"><a id="action-chain-color-bfactor" class="chain-color radio">B-factor</a></li>
-						</ul>
-					</li>
-					<li id="jmol-dropdown" class="dropdown">
-						<a class="dropdown-toggle">Jmol</a>
-						<ul class="dropdown-menu">
-							<li class="menu-item"><a id="action-jmol-hq" class="check">High Quality</a></li>
-							<li class="menu-item"><a id="action-jmol-clean" class="jmol-script">Clean</a></li>
-							<li class="menu-header jmol-script jmol-calc">Calculations</li>
-							<li class="menu-item"><a id="action-jmol-mep-lucent" class="jmol-script jmol-calc">MEP surface lucent</a></li>
-							<li class="menu-item"><a id="action-jmol-mep-opaque" class="jmol-script jmol-calc">MEP surface opaque</a></li>
-							<li class="menu-item"><a id="action-jmol-charge" class="jmol-script jmol-calc">Charge</a></li>
-							<li class="menu-item"><a id="action-jmol-bond-dipoles" class="jmol-script jmol-calc">Bond dipoles</a></li>
-							<li class="menu-item"><a id="action-jmol-net-dipole" class="jmol-script jmol-calc">Overall dipole</a></li>
-							<li class="menu-item"><a id="action-jmol-minimize" class="jmol-script jmol-calc">Energy minimization</a></li>
-							<li class="menu-header jmol-script">Measurement</li>
-							<li class="menu-item"><a id="action-jmol-measure-distance" class="jmol-script jmol-picking radio">Distance</a></li>
-							<li class="menu-item"><a id="action-jmol-measure-angle" class="jmol-script jmol-picking radio">Angle</a></li>
-							<li class="menu-item"><a id="action-jmol-measure-torsion" class="jmol-script jmol-picking radio">Torsion</a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div id="content">
-			<div id="main-layer" class="layer layout-vsplit">
-				<!-- Dynamic onload layout -->
-				<script type="text/javascript">
-					MolView.query = getQuery();
-
-					if(localStorage && localStorage["molview.theme"])
-					{
-						MolView.setTheme(localStorage["molview.theme"]);
-					}
-
-					if($(window).height() > $(window).width()
-						&& !MolView.query.layout
-						&& MolView.layout != "model") Actions.layout_hsplit();
-
-					//compact menu bar
-					MolView.setMenuLayout($(window).width() < 1100,
-							$(window).width() < 1100 && !MolView.touch,
-							$(window).width() < 390 && MolView.touch);
-				</script>
-				<div id="sketcher">
-					<div id="molpad" class="sketcher">
-						<div id="chem-tools" class="toolbar">
-							<div class="toolbar-inner">
-								<div id="action-mp-bond-single" class="tool-button primary-tool" title="Single bond"></div>
-								<div id="action-mp-bond-double" class="tool-button primary-tool" title="Double bond"></div>
-								<div id="action-mp-bond-triple" class="tool-button primary-tool" title="Triple bond"></div>
-								<div id="action-mp-bond-wedge" class="tool-button primary-tool" title="Wedge bond"></div>
-								<div id="action-mp-bond-hash" class="tool-button primary-tool" title="Hash bond"></div>
-								<div class="vertical-separator"></div>
-								<div id="action-mp-frag-benzene" class="tool-button primary-tool" title="Benzene"></div>
-								<div id="action-mp-frag-cyclopropane" class="tool-button primary-tool" title="Cyclopropane"></div>
-								<div id="action-mp-frag-cyclobutane" class="tool-button primary-tool" title="Cyclobutane"></div>
-								<div id="action-mp-frag-cyclopentane" class="tool-button primary-tool" title="Cyclopentane"></div>
-								<div id="action-mp-frag-cyclohexane" class="tool-button primary-tool" title="Cyclohexane"></div>
-								<div id="action-mp-frag-cycloheptane" class="tool-button primary-tool" title="Cycloheptane"></div>
-								<div class="vertical-separator"></div>
-								<div id="action-mp-chain" class="tool-button primary-tool" title="Carbon chain"></div>
-								<div id="action-mp-charge-add" class="tool-button primary-tool" title="Charge +">e<sup>+</sup></div>
-								<div id="action-mp-charge-sub" class="tool-button primary-tool" title="Charge -">e<sup>&minus;</sup></div>
-							</div>
-						</div>
-						<div id="edit-tools" class="toolbar">
-							<div class="toolbar-inner hstack">
-								<div id="action-mp-clear" class="tool-button tool-button-horizontal" title="Clear all"></div>
-								<div id="action-mp-eraser" class="tool-button tool-button-horizontal primary-tool" title="Erase"></div>
-								<div class="horizontal-separator"></div>
-								<div id="action-mp-undo" class="tool-button tool-button-horizontal tool-button-disabled" title="Undo"></div>
-								<div id="action-mp-redo" class="tool-button tool-button-horizontal tool-button-disabled" title="Redo"></div>
-								<div class="horizontal-separator"></div>
-								<div id="action-mp-drag" class="tool-button tool-button-horizontal primary-tool" title="Drag atoms and bonds"></div>
-								<div id="action-mp-rect" class="tool-button tool-button-horizontal primary-tool" title="Rectangle selection"></div>
-								<div id="action-mp-lasso" class="tool-button tool-button-horizontal primary-tool" title="Lasso selection"></div>
-								<div class="horizontal-separator"></div>
-								<div id="action-mp-color-mode" class="tool-button tool-button-horizontal enabled" title="Toggle color mode"></div>
-								<div id="action-mp-skeletal-formula" class="tool-button tool-button-horizontal enabled" title="Toggle skeletal formula"></div>
-								<div id="action-mp-center" class="tool-button tool-button-horizontal" title="Center structure"></div>
-								<div class="horizontal-separator"></div>
-								<div id="action-mp-clean" class="tool-button tool-button-horizontal" title="Clean structure"></div>
-								<div id="action-resolve" class="tool-button tool-button-horizontal" title="Update 3D view">2D to 3D</div>
-							</div>
-						</div>
-						<div id="elem-tools" class="toolbar">
-							<div class="toolbar-inner">
-								<div id="action-mp-atom-c" class="tool-button primary-tool tool-element element-colored" title="Carbon">C</div>
-								<div id="action-mp-atom-h" class="tool-button primary-tool tool-element element-colored" title="Hydrogen">H</div>
-								<div id="action-mp-atom-n" class="tool-button primary-tool tool-element element-colored" title="Nitrogen">N</div>
-								<div id="action-mp-atom-o" class="tool-button primary-tool tool-element element-colored" title="Oxygen">O</div>
-								<div id="action-mp-atom-p" class="tool-button primary-tool tool-element element-colored" title="Phosphorus">P</div>
-								<div id="action-mp-atom-s" class="tool-button primary-tool tool-element element-colored" title="Sulfur">S</div>
-								<div id="action-mp-atom-f" class="tool-button primary-tool tool-element element-colored" title="Fluorine">F</div>
-								<div id="action-mp-atom-cl" class="tool-button primary-tool tool-element element-colored" title="Chlorine">Cl</div>
-								<div id="action-mp-atom-br" class="tool-button primary-tool tool-element element-colored" title="Bromine">Br</div>
-								<div id="action-mp-atom-i" class="tool-button primary-tool tool-element element-colored" title="Iodine">I</div>
-								<div id="action-mp-periodictable" class="tool-button primary-tool" title="Periodic Table">...</div>
-							</div>
-						</div>
-						<div id="molpad-canvas-wrapper"></div>
-					</div>
-				</div>
-<!--				<div id="model" >-->
-                <!--					&lt;!&ndash; Get preferred model background color from localStorage &ndash;&gt;-->
-                <!--					<script type="text/javascript">-->
-                <!--						if(localStorage && localStorage["model.background"])-->
-                <!--						{-->
-                <!--							var c = localStorage["model.background"];-->
-                <!--							$("#model").css("background", c == "gray" ? "#ccc" : c);-->
-                <!--						}-->
-                <!--					</script>-->
-                <!--					<div id="chemdoodle" class="render-engine" style="display: none;">-->
-                <!--						<canvas id="chemdoodle-canvas"></canvas>-->
-                <!--					</div>-->
-                <!--					<div id="jsmol" class="render-engine" style="display: none;"></div>-->
-                <!--					<div id="glmol" class="render-engine" style="display: none;"></div>-->
-                <!--				</div>-->
-                <div id="ocr">
-                    <p>text text</p>
+    </filter>
+</svg>
+<div id="progress">
+    <canvas id="progress-canvas"></canvas>
+</div>
+<div id="menu">
+    <div id="menu-bar" class="hstack">
+        <div id="brand"></div>
+        <form id="search" class="hstack" action="index.php">
+            <div class="input-wrapper">
+                <button><i class="fa fa-search"></i></button>
+                <input id="search-input" name="q" type="text" autocomplete="off" spellcheck="false"/>
+                <div class="input-focus"></div>
+                <div id="search-dropdown" class="dropdown">
+                    <a class="dropdown-toggle"></a>
+                    <ul class="dropdown-menu dropdown-left">
+                        <li class="menu-item"><a id="action-show-search-layer">Show last search results</a></li>
+                        <li class="menu-header">Advanced search</li>
+                        <li class="menu-item"><a id="action-search-pubchem">PubChem Compounds</a></li>
+                        <li class="menu-item"><a id="action-search-rcsb">RCSB Protein Data Bank</a></li>
+                        <li class="menu-item"><a id="action-search-cod">Crystallography Open Database</a></li>
+                    </ul>
                 </div>
-			</div>
-			<div id="search-layer" class="layer" style="display: none;">
-				<div class="btn-group-bar">
-					<button class="btn close btn-primary "><i class="fa fa-arrow-left"></i> Return</button>
-				</div>
-				<div class="container"></div>
-				<div id="action-load-more-pubchem" class="load-more" style="display: none;"></div>
-				<div id="action-load-more-rcsb" class="load-more" style="display: none;"></div>
-				<div id="action-load-more-cod" class="load-more" style="display: none;"></div>
-			</div>
-			<div id="infocard-layer" class="layer data-layer" style="display: none;">
-				<div class="btn-group-bar">
-					<button class="btn close btn-primary "><i class="fa fa-arrow-left"></i> Return</button>
-				</div>
-				<div id="properties-wrapper">
-					<div id="general-properties">
-						<div id="molecule-image-wrapper" class="properties-block">
-							<img id="molecule-image" alt=""
-								style="-webkit-filter: url('#pubchemImageFilter');
+            </div>
+        </form>
+        <ul id="main-menu" class="hstack">
+            <li id="molview-dropdown" class="dropdown">
+                <a class="dropdown-toggle">MolView</a>
+                <ul class="dropdown-menu">
+                    <li class="menu-header">Layout</li>
+                    <li id="layout-menu">
+                        <a id="action-layout-model"></a>
+                        <a id="action-layout-hsplit"></a>
+                        <br/>
+                        <a id="action-layout-vsplit"></a>
+                        <a id="action-layout-sketcher"></a>
+                    </li>
+                    <li class="menu-header">Theme</li>
+                    <li class="menu-item"><a id="action-theme-desktop" class="radio checked">Desktop</a></li>
+                    <li class="menu-item"><a id="action-theme-touch" class="radio">Touch</a></li>
+                    <li class="menu-header">Information</li>
+                    <li class="menu-item"><a id="action-help">Help</a></li>
+                    <li class="menu-item"><a id="action-about">About</a></li>
+                </ul>
+            </li>
+            <li id="tools-dropdown" class="dropdown">
+                <a class="dropdown-toggle">Tools</a>
+                <ul class="dropdown-menu">
+                    <li class="menu-header">Link</li>
+                    <!-- <li class="menu-item"><a id="action-share">Share</a></li> -->
+                    <li class="menu-item"><a id="action-embed">Embed</a></li>
+                    <li class="menu-header">Export</li>
+                    <li class="menu-item"><a id="action-export-sketcher-png">Structural formula image</a></li>
+                    <li class="menu-item"><a id="action-export-model-png">3D model image</a></li>
+                    <li class="menu-item"><a id="action-export-model">MOL file</a></li>
+                    <li class="menu-header">Chemical data</li>
+                    <li class="menu-item"><a id="action-data-infocard">Information card</a></li>
+                    <li class="menu-item"><a id="action-data-spectra">Spectroscopy</a></li>
+                    <li class="menu-item"><a id="model-source" class="disabled" target="_blank">3D model source</a></li>
+                    <li class="menu-header">Advanced search</li>
+                    <li class="menu-item"><a id="action-search-similarity">Similarity</a></li>
+                    <li class="menu-item"><a id="action-search-substructure">Substructure</a></li>
+                    <li class="menu-item"><a id="action-search-superstructure">Superstructure</a></li>
+                </ul>
+            </li>
+            <li id="model-dropdown" class="dropdown">
+                <a class="dropdown-toggle">Model</a>
+                <ul class="dropdown-menu">
+                    <li class="menu-item"><a id="action-model-reset">Reset</a></li>
+                    <li class="menu-header">Representation</li>
+                    <li class="menu-item"><a id="action-model-balls" class="r-mode radio checked">Ball and Stick</a>
+                    </li>
+                    <li class="menu-item"><a id="action-model-stick" class="r-mode radio">Stick</a></li>
+                    <li class="menu-item"><a id="action-model-vdw" class="r-mode radio">van der Waals Spheres</a></li>
+                    <li class="menu-item"><a id="action-model-wireframe" class="r-mode radio">Wireframe</a></li>
+                    <li class="menu-item"><a id="action-model-line" class="r-mode radio">Line</a></li>
+                    <li class="menu-header">Background</li>
+                    <li class="menu-item"><a id="action-model-bg-black" class="model-bg radio checked">Black</a></li>
+                    <li class="menu-item"><a id="action-model-bg-gray" class="model-bg radio">Gray</a></li>
+                    <li class="menu-item"><a id="action-model-bg-white" class="model-bg radio">White</a></li>
+                    <li class="menu-header">Engine</li>
+                    <li class="menu-item"><a id="action-engine-glmol" class="radio checked">GLmol</a></li>
+                    <li class="menu-item"><a id="action-engine-jmol" class="radio">Jmol</a></li>
+                    <li class="menu-item"><a id="action-engine-cdw" class="radio">ChemDoodle</a></li>
+                    <li class="menu-header">Crystallography</li>
+                    <li class="menu-item"><a id="action-cif-unit-cell">Load unit cell</a></li>
+                    <li class="menu-item"><a id="action-cif-cubic-supercell">Load 2&times;2&times;2 supercell</a></li>
+                    <li class="menu-item"><a id="action-cif-flat-supercell">Load 1&times;3&times;3 supercell</a></li>
+                </ul>
+            </li>
+            <li id="protein-dropdown" class="dropdown">
+                <a class="dropdown-toggle">Protein</a>
+                <ul class="dropdown-menu">
+                    <li class="menu-item"><a id="action-bio-assembly" class="check">Show bio assembly</a></li>
+                    <li class="menu-header">Chain representation</li>
+                    <li class="menu-item"><a id="action-chain-type-ribbon" class="chain-type radio checked">Ribbon</a>
+                    </li>
+                    <li class="menu-item"><a id="action-chain-type-cylinders" class="chain-type radio">Cylinder and
+                        plate</a></li>
+                    <li class="menu-item"><a id="action-chain-type-btube" class="chain-type radio">B-factor tube</a>
+                    </li>
+                    <li class="menu-item"><a id="action-chain-type-ctrace" class="chain-type radio">C-alpha trace</a>
+                    </li>
+                    <li class="menu-divider"></li>
+                    <li class="menu-item"><a id="action-chain-type-bonds" class="check">Bonds</a></li>
+                    <li class="menu-header">Chain color scheme</li>
+                    <li class="menu-item"><a id="action-chain-color-ss" class="chain-color radio checked">Secondary
+                        structure</a></li>
+                    <li class="menu-item"><a id="action-chain-color-spectrum" class="chain-color radio">Spectrum</a>
+                    </li>
+                    <li class="menu-item"><a id="action-chain-color-chain" class="chain-color radio">Chain</a></li>
+                    <li class="menu-item"><a id="action-chain-color-residue" class="chain-color radio">Residue</a></li>
+                    <li class="menu-item"><a id="action-chain-color-polarity" class="chain-color radio">Polarity</a>
+                    </li>
+                    <li class="menu-item"><a id="action-chain-color-bfactor" class="chain-color radio">B-factor</a></li>
+                </ul>
+            </li>
+            <li id="jmol-dropdown" class="dropdown">
+                <a class="dropdown-toggle">Jmol</a>
+                <ul class="dropdown-menu">
+                    <li class="menu-item"><a id="action-jmol-hq" class="check">High Quality</a></li>
+                    <li class="menu-item"><a id="action-jmol-clean" class="jmol-script">Clean</a></li>
+                    <li class="menu-header jmol-script jmol-calc">Calculations</li>
+                    <li class="menu-item"><a id="action-jmol-mep-lucent" class="jmol-script jmol-calc">MEP surface
+                        lucent</a></li>
+                    <li class="menu-item"><a id="action-jmol-mep-opaque" class="jmol-script jmol-calc">MEP surface
+                        opaque</a></li>
+                    <li class="menu-item"><a id="action-jmol-charge" class="jmol-script jmol-calc">Charge</a></li>
+                    <li class="menu-item"><a id="action-jmol-bond-dipoles" class="jmol-script jmol-calc">Bond
+                        dipoles</a></li>
+                    <li class="menu-item"><a id="action-jmol-net-dipole" class="jmol-script jmol-calc">Overall
+                        dipole</a></li>
+                    <li class="menu-item"><a id="action-jmol-minimize" class="jmol-script jmol-calc">Energy
+                        minimization</a></li>
+                    <li class="menu-header jmol-script">Measurement</li>
+                    <li class="menu-item"><a id="action-jmol-measure-distance" class="jmol-script jmol-picking radio">Distance</a>
+                    </li>
+                    <li class="menu-item"><a id="action-jmol-measure-angle"
+                                             class="jmol-script jmol-picking radio">Angle</a></li>
+                    <li class="menu-item"><a id="action-jmol-measure-torsion" class="jmol-script jmol-picking radio">Torsion</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="content">
+    <div id="main-layer" class="layer layout-vsplit">
+        <!-- Dynamic onload layout -->
+        <script type="text/javascript">
+            MolView.query = getQuery();
+
+            if (localStorage && localStorage["molview.theme"]) {
+                MolView.setTheme(localStorage["molview.theme"]);
+            }
+
+            if ($(window).height() > $(window).width()
+                && !MolView.query.layout
+                && MolView.layout !== "model") Actions.layout_hsplit();
+
+            //compact menu bar
+            MolView.setMenuLayout($(window).width() < 1100,
+                $(window).width() < 1100 && !MolView.touch,
+                $(window).width() < 390 && MolView.touch);
+        </script>
+        <div id="sketcher">
+            <div id="molpad" class="sketcher">
+                <div id="chem-tools" class="toolbar">
+                    <div class="toolbar-inner">
+                        <div id="action-mp-bond-single" class="tool-button primary-tool" title="Single bond"></div>
+                        <div id="action-mp-bond-double" class="tool-button primary-tool" title="Double bond"></div>
+                        <div id="action-mp-bond-triple" class="tool-button primary-tool" title="Triple bond"></div>
+                        <div id="action-mp-bond-wedge" class="tool-button primary-tool" title="Wedge bond"></div>
+                        <div id="action-mp-bond-hash" class="tool-button primary-tool" title="Hash bond"></div>
+                        <div class="vertical-separator"></div>
+                        <div id="action-mp-frag-benzene" class="tool-button primary-tool" title="Benzene"></div>
+                        <div id="action-mp-frag-cyclopropane" class="tool-button primary-tool"
+                             title="Cyclopropane"></div>
+                        <div id="action-mp-frag-cyclobutane" class="tool-button primary-tool" title="Cyclobutane"></div>
+                        <div id="action-mp-frag-cyclopentane" class="tool-button primary-tool"
+                             title="Cyclopentane"></div>
+                        <div id="action-mp-frag-cyclohexane" class="tool-button primary-tool" title="Cyclohexane"></div>
+                        <div id="action-mp-frag-cycloheptane" class="tool-button primary-tool"
+                             title="Cycloheptane"></div>
+                        <div class="vertical-separator"></div>
+                        <div id="action-mp-chain" class="tool-button primary-tool" title="Carbon chain"></div>
+                        <div id="action-mp-charge-add" class="tool-button primary-tool" title="Charge +">e<sup>+</sup>
+                        </div>
+                        <div id="action-mp-charge-sub" class="tool-button primary-tool" title="Charge -">
+                            e<sup>&minus;</sup></div>
+                    </div>
+                </div>
+                <div id="edit-tools" class="toolbar">
+                    <div class="toolbar-inner hstack">
+                        <div id="action-mp-clear" class="tool-button tool-button-horizontal" title="Clear all"></div>
+                        <div id="action-mp-eraser" class="tool-button tool-button-horizontal primary-tool"
+                             title="Erase"></div>
+                        <div class="horizontal-separator"></div>
+                        <div id="action-mp-undo" class="tool-button tool-button-horizontal tool-button-disabled"
+                             title="Undo"></div>
+                        <div id="action-mp-redo" class="tool-button tool-button-horizontal tool-button-disabled"
+                             title="Redo"></div>
+                        <div class="horizontal-separator"></div>
+                        <div id="action-mp-drag" class="tool-button tool-button-horizontal primary-tool"
+                             title="Drag atoms and bonds"></div>
+                        <div id="action-mp-rect" class="tool-button tool-button-horizontal primary-tool"
+                             title="Rectangle selection"></div>
+                        <div id="action-mp-lasso" class="tool-button tool-button-horizontal primary-tool"
+                             title="Lasso selection"></div>
+                        <div class="horizontal-separator"></div>
+                        <div id="action-mp-color-mode" class="tool-button tool-button-horizontal enabled"
+                             title="Toggle color mode"></div>
+                        <div id="action-mp-skeletal-formula" class="tool-button tool-button-horizontal enabled"
+                             title="Toggle skeletal formula"></div>
+                        <div id="action-mp-center" class="tool-button tool-button-horizontal"
+                             title="Center structure"></div>
+                        <div class="horizontal-separator"></div>
+                        <div id="action-mp-clean" class="tool-button tool-button-horizontal"
+                             title="Clean structure"></div>
+                        <div id="action-resolve" class="tool-button tool-button-horizontal" title="Update 3D view">2D to
+                            3D
+                        </div>
+                    </div>
+                </div>
+                <div id="elem-tools" class="toolbar">
+                    <div class="toolbar-inner">
+                        <div id="action-mp-atom-c" class="tool-button primary-tool tool-element element-colored"
+                             title="Carbon">C
+                        </div>
+                        <div id="action-mp-atom-h" class="tool-button primary-tool tool-element element-colored"
+                             title="Hydrogen">H
+                        </div>
+                        <div id="action-mp-atom-n" class="tool-button primary-tool tool-element element-colored"
+                             title="Nitrogen">N
+                        </div>
+                        <div id="action-mp-atom-o" class="tool-button primary-tool tool-element element-colored"
+                             title="Oxygen">O
+                        </div>
+                        <div id="action-mp-atom-p" class="tool-button primary-tool tool-element element-colored"
+                             title="Phosphorus">P
+                        </div>
+                        <div id="action-mp-atom-s" class="tool-button primary-tool tool-element element-colored"
+                             title="Sulfur">S
+                        </div>
+                        <div id="action-mp-atom-f" class="tool-button primary-tool tool-element element-colored"
+                             title="Fluorine">F
+                        </div>
+                        <div id="action-mp-atom-cl" class="tool-button primary-tool tool-element element-colored"
+                             title="Chlorine">Cl
+                        </div>
+                        <div id="action-mp-atom-br" class="tool-button primary-tool tool-element element-colored"
+                             title="Bromine">Br
+                        </div>
+                        <div id="action-mp-atom-i" class="tool-button primary-tool tool-element element-colored"
+                             title="Iodine">I
+                        </div>
+                        <div id="action-mp-periodictable" class="tool-button primary-tool" title="Periodic Table">...
+                        </div>
+                    </div>
+                </div>
+                <div id="molpad-canvas-wrapper"></div>
+            </div>
+        </div>
+        <!--				<div id="model" >-->
+        <!--					&lt;!&ndash; Get preferred model background color from localStorage &ndash;&gt;-->
+        <!--					<script type="text/javascript">-->
+        <!--						if(localStorage && localStorage["model.background"])-->
+        <!--						{-->
+        <!--							var c = localStorage["model.background"];-->
+        <!--							$("#model").css("background", c == "gray" ? "#ccc" : c);-->
+        <!--						}-->
+        <!--					</script>-->
+        <!--					<div id="chemdoodle" class="render-engine" style="display: none;">-->
+        <!--						<canvas id="chemdoodle-canvas"></canvas>-->
+        <!--					</div>-->
+        <!--					<div id="jsmol" class="render-engine" style="display: none;"></div>-->
+        <!--					<div id="glmol" class="render-engine" style="display: none;"></div>-->
+        <!--				</div>-->
+        <div id="ocr">
+            <div class="demo demo-noninputable pastable" id="imgContainer">
+                <div class="box">
+                    <h3>使用方法：</h3>
+                    <p>step.0 在电脑上使用Chrome/Firefox等现代浏览器访问此网页</p>
+                    <p>step.1 使用QQ/微信等截图软件, 截取文献中的结构式</p>
+                    <p>step.2 单击此处，在此处(Ctrl+V)粘贴截图</p>
+                    <p>step.3 单击文本框中的MOL文本(单击即可, 会自动复制)</p>
+                    <p>step.4 在KingDraw中右键 选择性粘贴 > MOL V2000(暂无快捷键)</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在ChemDraw中右键 paste special > MOL
+                        TEXT
+                        (Alt+Shift+Ctrl+P)</p>
+                </div>
+            </div>
+            <div style="background: #b3d4fc">
+                <p><span id="debug"></span></p>
+                <p><span id="smiles"></span></p>
+
+            </div>
+        </div>
+    </div>
+    <div id="search-layer" class="layer" style="display: none;">
+        <div class="btn-group-bar">
+            <button class="btn close btn-primary "><i class="fa fa-arrow-left"></i> Return</button>
+        </div>
+        <div class="container"></div>
+        <div id="action-load-more-pubchem" class="load-more" style="display: none;"></div>
+        <div id="action-load-more-rcsb" class="load-more" style="display: none;"></div>
+        <div id="action-load-more-cod" class="load-more" style="display: none;"></div>
+    </div>
+    <div id="infocard-layer" class="layer data-layer" style="display: none;">
+        <div class="btn-group-bar">
+            <button class="btn close btn-primary "><i class="fa fa-arrow-left"></i> Return</button>
+        </div>
+        <div id="properties-wrapper">
+            <div id="general-properties">
+                <div id="molecule-image-wrapper" class="properties-block">
+                    <img id="molecule-image" alt=""
+                         style="-webkit-filter: url('#pubchemImageFilter');
 										   moz-filter: url('#pubchemImageFilter');
 										   -ms-filter: url('#pubchemImageFilter');
 										    -o-filter: url('#pubchemImageFilter');
 										       filter: url('#pubchemImageFilter');*"/>
-						</div>
-						<div class="properties-block">
-							<div id="molecule-info">
-								<h3 id="molecule-title"></h3>
-								<p id="molecule-description"></p>
-							</div>
-							<table id="common-chem-props">
-								<tr id="prop-formula-wrapper"><td>Formula</td><td id="prop-formula" class="chemprop"></td></tr>
-								<tr id="prop-mw-wrapper"><td>Molecular weight</td><td id="prop-mw" class="chemprop"></td></tr>
-								<tr id="prop-donors-wrapper"><td>Hydrogen bond donors</td><td id="prop-donors" class="chemprop"></td></tr>
-								<tr id="prop-acceptors-wrapper"><td>Hydrogen bond acceptors</td><td id="prop-acceptors" class="chemprop"></td></tr>
-							</table>
-							<h3 id="percent-composition-title">Percent composition</h3>
-							<table id="percent-composition-table"></table>
-						</div>
-					</div>
-					<div id="prop-sysname-wrapper" class="chem-identifier">
-						<label for="prop-sysname">Systematic name</label>
-						<input type="text" id="prop-sysname" class="input chemprop" autocomplete="off" spellcheck="false" />
-					</div>
-					<div id="prop-canonicalsmiles-wrapper" class="chem-identifier">
-						<label for="prop-canonicalsmiles">Canonical SMILES</label>
-						<input type="text" id="prop-canonicalsmiles" class="input chemprop" autocomplete="off" spellcheck="false" />
-					</div>
-					<div id="prop-isomericsmiles-wrapper" class="chem-identifier">
-						<label for="prop-isomericsmiles">Isomeric SMILES</label>
-						<input type="text" id="prop-isomericsmiles" class="input chemprop" autocomplete="off" spellcheck="false" />
-					</div>
-					<div id="prop-inchikey-wrapper" class="chem-identifier">
-						<label for="prop-inchikey">InChIKey</label>
-						<input type="text" id="prop-inchikey" class="input chemprop" autocomplete="off" spellcheck="false" />
-					</div>
-					<div id="prop-inchi-wrapper" class="chem-identifier">
-						<label for="prop-inchi">InChI</label>
-						<input type="text" id="prop-inchi" class="input chemprop" autocomplete="off" spellcheck="false" />
-					</div>
-					<div id="prop-cas-wrapper" class="chem-identifier">
-						<label for="cas-sysname">CAS Number</label>
-						<input type="text" id="prop-cas" class="input chemprop" autocomplete="off" spellcheck="false" />
-					</div>
-					<div id="prop-csid-wrapper" class="chem-identifier">
-						<label for="prop-csid">Chemspider ID
-							<a id="chemspider-link" class="link chem-link" target="_blank"><i class="fa fa-external-link"></i></a>
-						</label>
-						<input type="text" id="prop-csid" class="input chemprop" autocomplete="off" spellcheck="false" />
-					</div>
-					<div id="prop-cid-wrapper" class="chem-identifier">
-						<label for="prop-cid">PubChem Compound ID
-							<a id="pubchem-link" class="link chem-link" target="_blank"><i class="fa fa-external-link"></i></a>
-						</label>
-						<input type="text" id="prop-cid" class="input chemprop" autocomplete="off" spellcheck="false" />
-					</div>
-				</div>
-			</div>
-			<div id="spectra-layer" class="layer data-layer" style="display: none;">
-				<div class="btn-group-bar">
-					<button class="btn close btn-primary "><i class="fa fa-arrow-left"></i> Return</button>
-					<select id="spectrum-select"></select>
-					<button id="action-export-spectrum-png" class="btn"><i class="fa fa-download"></i> Download PNG image</button>
-					<button id="action-export-spectrum-jcamp" class="btn"><i class="fa fa-download"></i> Download JCAMP data</button>
-					<a id="spectrum-nist-source" class="btn" target="_blank"><i class="fa fa-external-link"></i> NIST source</a>
-				</div>
-				<div id="spectrum-wrapper">
-					<canvas id="spectrum-canvas"></canvas>
-				</div>
-			</div>
-		</div>
-		<div id="messages"></div>
-		<div id="autocomplete-dropdown-wrapper" style="display: none;">
-			<div id="autocomplete-dropdown"></div>
-		</div>
+                </div>
+                <div class="properties-block">
+                    <div id="molecule-info">
+                        <h3 id="molecule-title"></h3>
+                        <p id="molecule-description"></p>
+                    </div>
+                    <table id="common-chem-props">
+                        <tr id="prop-formula-wrapper">
+                            <td>Formula</td>
+                            <td id="prop-formula" class="chemprop"></td>
+                        </tr>
+                        <tr id="prop-mw-wrapper">
+                            <td>Molecular weight</td>
+                            <td id="prop-mw" class="chemprop"></td>
+                        </tr>
+                        <tr id="prop-donors-wrapper">
+                            <td>Hydrogen bond donors</td>
+                            <td id="prop-donors" class="chemprop"></td>
+                        </tr>
+                        <tr id="prop-acceptors-wrapper">
+                            <td>Hydrogen bond acceptors</td>
+                            <td id="prop-acceptors" class="chemprop"></td>
+                        </tr>
+                    </table>
+                    <h3 id="percent-composition-title">Percent composition</h3>
+                    <table id="percent-composition-table"></table>
+                </div>
+            </div>
+            <div id="prop-sysname-wrapper" class="chem-identifier">
+                <label for="prop-sysname">Systematic name</label>
+                <input type="text" id="prop-sysname" class="input chemprop" autocomplete="off" spellcheck="false"/>
+            </div>
+            <div id="prop-canonicalsmiles-wrapper" class="chem-identifier">
+                <label for="prop-canonicalsmiles">Canonical SMILES</label>
+                <input type="text" id="prop-canonicalsmiles" class="input chemprop" autocomplete="off"
+                       spellcheck="false"/>
+            </div>
+            <div id="prop-isomericsmiles-wrapper" class="chem-identifier">
+                <label for="prop-isomericsmiles">Isomeric SMILES</label>
+                <input type="text" id="prop-isomericsmiles" class="input chemprop" autocomplete="off"
+                       spellcheck="false"/>
+            </div>
+            <div id="prop-inchikey-wrapper" class="chem-identifier">
+                <label for="prop-inchikey">InChIKey</label>
+                <input type="text" id="prop-inchikey" class="input chemprop" autocomplete="off" spellcheck="false"/>
+            </div>
+            <div id="prop-inchi-wrapper" class="chem-identifier">
+                <label for="prop-inchi">InChI</label>
+                <input type="text" id="prop-inchi" class="input chemprop" autocomplete="off" spellcheck="false"/>
+            </div>
+            <div id="prop-cas-wrapper" class="chem-identifier">
+                <label for="cas-sysname">CAS Number</label>
+                <input type="text" id="prop-cas" class="input chemprop" autocomplete="off" spellcheck="false"/>
+            </div>
+            <div id="prop-csid-wrapper" class="chem-identifier">
+                <label for="prop-csid">Chemspider ID
+                    <a id="chemspider-link" class="link chem-link" target="_blank"><i
+                            class="fa fa-external-link"></i></a>
+                </label>
+                <input type="text" id="prop-csid" class="input chemprop" autocomplete="off" spellcheck="false"/>
+            </div>
+            <div id="prop-cid-wrapper" class="chem-identifier">
+                <label for="prop-cid">PubChem Compound ID
+                    <a id="pubchem-link" class="link chem-link" target="_blank"><i class="fa fa-external-link"></i></a>
+                </label>
+                <input type="text" id="prop-cid" class="input chemprop" autocomplete="off" spellcheck="false"/>
+            </div>
+        </div>
+    </div>
+    <div id="spectra-layer" class="layer data-layer" style="display: none;">
+        <div class="btn-group-bar">
+            <button class="btn close btn-primary "><i class="fa fa-arrow-left"></i> Return</button>
+            <select id="spectrum-select"></select>
+            <button id="action-export-spectrum-png" class="btn"><i class="fa fa-download"></i> Download PNG image
+            </button>
+            <button id="action-export-spectrum-jcamp" class="btn"><i class="fa fa-download"></i> Download JCAMP data
+            </button>
+            <a id="spectrum-nist-source" class="btn" target="_blank"><i class="fa fa-external-link"></i> NIST source</a>
+        </div>
+        <div id="spectrum-wrapper">
+            <canvas id="spectrum-canvas"></canvas>
+        </div>
+    </div>
+</div>
+<div id="messages"></div>
+<div id="autocomplete-dropdown-wrapper" style="display: none;">
+    <div id="autocomplete-dropdown"></div>
+</div>
 <!--		<div id="dialog-overlay" class="dialog-overlay">-->
 <!--			<div id="dialog-click-area">-->
 <!--				<div id="dialog-wrapper">-->
@@ -761,5 +958,5 @@ Query parameters:
 <!--				</div>-->
 <!--			</div>-->
 <!--		</div>-->
-	</body>
+</body>
 </html>

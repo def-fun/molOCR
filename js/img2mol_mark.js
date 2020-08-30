@@ -2,8 +2,9 @@ function playWithThisMolFile(obj) {
     obj.select();
     document.execCommand("Copy");
     // swal("复制成功！", "在化学结构式编辑软件中粘贴为SMILES", "success");
-    // console.log(obj);
-    redrawMolecular(obj.textContent);
+    console.log(obj);
+    Sketcher.loadMOL(obj.textContent);
+
 }
 
 var eleArr = [];
@@ -42,7 +43,7 @@ function onDown(e) {
     for (var i = 0; i < eleArr.length; i++) {
         if (mx > eleArr[i].x1 && mx < eleArr[i].x2 && my > eleArr[i].y1 && my < eleArr[i].y2) {
             console.log('click on', eleArr[i].id);
-            redrawMolecular(eleArr[i].file)
+            Sketcher.loadMOL(eleArr[i].file);
         }else {
             // sketcher.clear();
         }

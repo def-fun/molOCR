@@ -439,7 +439,27 @@ body {
 .layout-sketcher > #model {
     visibility: hidden
 }
+#ocr {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 0;
+    bottom: 0;
+    background: #F5F5DC;
+    overflow: hidden
+}
 
+.layout-model > #ocr, .layout-hsplit > #ocr {
+    left: 0
+}
+
+.layout-hsplit > #ocr {
+    top: 50%
+}
+
+.layout-sketcher > #ocr {
+    visibility: hidden
+}
 #messages {
     z-index: 3
 }
