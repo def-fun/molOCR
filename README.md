@@ -26,3 +26,4 @@ v0.0.0.0.3
 
 ## Todo
 - 加个网页版的结构式编辑器
+- 使用[chemdoodle](https://web.chemdoodle.com/tutorial/loading-data#customise-template)实现分子编辑
