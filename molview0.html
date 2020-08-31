@@ -113,8 +113,8 @@ along with MolView.  If not, see <http://www.gnu.org/licenses/>.
         }
 
         .demo {
-            width: 620px;
-            height: 320px;
+            /*width: 620px;*/
+            height: 50%;
             overflow: auto;
         }
 
@@ -373,7 +373,7 @@ along with MolView.  If not, see <http://www.gnu.org/licenses/>.
                         <!--                        <div id="action-resolve" class="tool-button tool-button-horizontal" title="Update 3D view">2D to-->
                         <!--                            3D-->
                         <!--                        </div>-->
-                        <div id="copy-molecule" class="tool-button tool-button-horizontal" title="复制结构式到剪切板"> 复制
+                        <div id="copy-molecule" class="tool-button tool-button-horizontal" title="复制结构式到剪切板" onclick="copyMolecule()"> 复制
                         </div>
                     </div>
                 </div>
@@ -431,6 +431,7 @@ along with MolView.  If not, see <http://www.gnu.org/licenses/>.
                             alert('But we got its url anyway:' + data.url)
                         }
                     }).on('pasteText', function (ev, data) {
+                        $('#smiles').html('');
                         if (data.text.length < 200) {
                             $('#debug').text('粘贴了文本: ' + data.text);
                         } else {
@@ -450,6 +451,7 @@ along with MolView.  If not, see <http://www.gnu.org/licenses/>.
                         if (e.dataTransfer.files.length > 1) {
                             swal('拖放文件过多', '目前每次只支持拖放一张图片', 'error');
                             $('#debug').text('拖放文件过多');
+                            $('#smiles').html('');
                         } else {
                             var fileObj = e.dataTransfer.files[0];
                             if (fileObj.type.indexOf('image') !== -1) {
@@ -460,7 +462,8 @@ along with MolView.  If not, see <http://www.gnu.org/licenses/>.
 
                             } else {
                                 $('#debug').text('拖放了非图片文件: "' + fileObj.name + '"');
-                                swal('拖放了非图片文件', '只支持拖放图片文件', 'error');
+                                $('#smiles').html('');
+                                swal('拖放了非图片文件', '只支持jpg/png/gif等图片文件', 'error');
                             }
                         }
                     };
@@ -483,7 +486,7 @@ along with MolView.  If not, see <http://www.gnu.org/licenses/>.
                     <p>step.0 在电脑上使用Chrome/Firefox等现代浏览器访问此网页</p>
                     <p>step.1 使用QQ/微信等截图软件, 截取文献中的结构式</p>
                     <p>step.2 单击此处，在此处(Ctrl+V)粘贴截图</p>
-                    <p>step.3 单击文本框中的MOL文本(单击即可, 会自动复制)</p>
+                    <p>step.3 单击画板菜单栏中的“复制”按钮</p>
                     <p>step.4 在KingDraw中右键 选择性粘贴 > MOL V2000(暂无快捷键)</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在ChemDraw中右键 paste special > MOL
                         TEXT
@@ -493,7 +496,7 @@ along with MolView.  If not, see <http://www.gnu.org/licenses/>.
             <div style="background: #b3d4fc">
                 <p><span id="debug"></span></p>
                 <p><span id="smiles"></span></p>
-
+                <p id="molecule-text"></p>
             </div>
         </div>
 

@@ -38,18 +38,24 @@ function onDown(e) {
         if (mx > eleArr[i].x1 && mx < eleArr[i].x2 && my > eleArr[i].y1 && my < eleArr[i].y2) {
             let ele = eleArr[i];
             console.log('click on', ele.id);
-            Sketcher.loadMOL(ele.file);
-            ctx.putImageData(raw_img_data, 0, 0);
-            ctx.lineWidth = 4;
-            ctx.setLineDash([8, 8]);
-            ctx.strokeStyle = 'red';
-            let itv = 2;
-            ctx.strokeRect(ele.x1 - itv, ele.y1 - itv, ele.x2 - ele.x1 + itv * 2, ele.y2 - ele.y1 + itv * 2);
-            ctx.setLineDash([]);
+            highlight_molecule(ele.id);
         } else {
             // sketcher.clear();
         }
     }
+}
+
+function highlight_molecule(molecule_id) {
+    let ele = eleArr[molecule_id - 1];
+    Sketcher.loadMOL(ele.file);
+    ctx.putImageData(raw_img_data, 0, 0);
+    ctx.lineWidth = 4;
+    ctx.setLineDash([8, 8]);
+    ctx.strokeStyle = 'red';
+    let n = 2;
+    ctx.strokeRect(ele.x1 - n, ele.y1 - n, ele.x2 - ele.x1 + n * 2, ele.y2 - ele.y1 + n * 2);
+    ctx.setLineDash([]);
+    $("#molecule-text").html('<textarea style="width: 100%" rows="10" readonly>' + ele.file + '</textarea>');
 }
 
 
@@ -94,16 +100,15 @@ function querySmiles(img_blob) {
                         swal('未解析出结构式', '请确保图片中包含较为清晰的化学结构式', 'error');
                     } else {
                         for (var i = 0; i < mols.length; i++) {
-                            list += '<li><textarea onclick="playWithThisMolFile(this)" rows="1" cols="30" readonly>' + mols[i] + '</textarea></li>';
+                            // list += '<li><textarea onclick="playWithThisMolFile(this)" rows="1" cols="30" readonly>' + mols[i] + '</textarea></li>';
                             mark(ctx, i + 1, mols[i]);
 
                         }
                         raw_img_data = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
-                        let html = '单击文本框以复制mol结构式：<ol>' + list + '</ol>';
+                        let html = '识别到结构式个数：<strong>' + eleArr.length + '</strong>';
                         $('#smiles').html(html);
                         if (mols.length >= 1) { // 默认复制第一个mol
-                            var a = document.getElementsByTagName('textarea')[0];
-                            a.click();
+                            highlight_molecule(1);
                         }
                     }
 
@@ -116,4 +121,11 @@ function querySmiles(img_blob) {
             }
         }
     }
+}
+
+function copyMolecule() {
+    let obj = $("#molecule-text");
+    obj.html('<textarea style="width: 100%" rows="10" readonly>' + Sketcher.getMOL().replace('MolView', 'MOL TEXT\nMolView') + '</textarea>');
+    obj.context.getElementsByTagName("textarea")[0].select();
+    document.execCommand("Copy");
 }
