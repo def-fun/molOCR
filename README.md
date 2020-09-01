@@ -8,7 +8,7 @@ v0.0.0.0.3
 ## 部署
 1. 安装后端： [修改版的chembl_beaker](https://github.com/def-fun/chembl_beaker/tree/v1.1)
 2. 下载repo到网站目录下
-3. 视情况修改`js/img2mol_mark.js`第29行的url
+3. 视情况修改`js/img2mol.js`中的`OCR_API_URL`
 
 ## Feature
 - 识别率还行😂
