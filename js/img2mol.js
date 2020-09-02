@@ -65,7 +65,8 @@ function highlight_molecule(molecule_id) {
 
 function sendMolImage(img_blob) {
     // 把图片数据提交给后端，并执行一系列事件
-    $('#molText').text('加载中...');
+    Sketcher.clear();
+    $('#ocrMsg').text('加载中...');
     let xhr = new XMLHttpRequest();
     xhr.open('POST', OCR_API_URL);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -98,7 +99,7 @@ function sendMolImage(img_blob) {
                         }
                     }
                     if (molTexts.length === 0) {
-                        $('#molText').text('未解析出结构式');
+                        $('#ocrMsg').text('未解析出结构式🤔');
                         swal('未解析出结构式', '请确保图片中包含较为清晰的化学结构式', 'error');
                     } else {
                         for (let i = 0; i < molTexts.length; i++) {
@@ -108,7 +109,7 @@ function sendMolImage(img_blob) {
                         }
                         rawImgData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
                         let html = '识别到结构式个数：<strong>' + molArr.length + '</strong>';
-                        $('#molText').html(html);
+                        $('#ocrMsg').html(html);
                         if (molTexts.length >= 1) { // 默认复制第一个mol
                             highlight_molecule(1);
                         }
@@ -118,7 +119,7 @@ function sendMolImage(img_blob) {
 
 
             } else {
-                $('#molText').text('上传失败');
+                $('#ocrMsg').text('上传失败');
                 swal('上传失败', '可能是图片过大、网络故障或服务器离线', 'error');
             }
         }
