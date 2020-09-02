@@ -14,21 +14,16 @@ based on https://molview.org/ and osra
     <meta name="apple-mobile-web-app-capable" content="yes"/>
 
     <link rel="shortcut icon" href="favicon-32x32.png"/>
-    <title>MolOCR</title>
-    <meta name="author" content="Herman Bergwerf"/>
-    <meta name="keywords" content="molview,free,chemistry,app,molecules,proteins,crystals,spectroscopy"/>
+    <title>MolOCR - 化学结构式识别工具</title>
+    <meta name="author" content="def-fun"/>
+    <meta name="keywords" content="ocr,chemistry,app,molecules"/>
 
     <!-- Open Graph + Schema.org + Twitter Card -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@molview">
     <meta property="og:type" content="website"/>
-    <meta property="og:site_name" content="MolView"/>
-    <meta property="og:url" content="http://molview.org/"/>
-    <meta name="twitter:title" property="og:title" content="MolView"/>
-    <meta itemprop="name" content="MolView"/>
+    <meta property="og:site_name" content="MolOCR"/>
+    <meta property="og:url" content="https://github.com/def-fun/molOCR/"/>
+    <meta itemprop="name" content="MolOCR"/>
     <meta name="description"
-          content="MolView is an intuitive, Open-Source web-application to make science and education more awesome!"/>
-    <meta name="twitter:description" property="og:description"
           content="MolView is an intuitive, Open-Source web-application to make science and education more awesome!"/>
     <meta itemprop="description"
           content="MolView is an intuitive, Open-Source web-application to make science and education more awesome!"/>
@@ -83,7 +78,7 @@ based on https://molview.org/ and osra
     <!--      引入这个js会导致F5/Ctrl+C/F12等快捷键失效-->
     <script type="text/javascript" src="js/paste.js"></script>
     <script type="text/javascript" src="js/img2mol.js"></script>
-    <link rel="stylesheet" href="css/ChemDoodleWeb.css" type="text/css">
+    <!--    <link rel="stylesheet" href="css/ChemDoodleWeb.css" type="text/css">-->
     <link rel="stylesheet" href="js/uis/jquery-ui-1.11.4.css" type="text/css">
 
     <style type="text/css">
@@ -416,7 +411,8 @@ based on https://molview.org/ and osra
                             alert('But we got its url anyway:' + data.url)
                         }
                     }).on('pasteText', function (ev, data) {
-                        $('#molText').html('');
+                        $('#ocrMsg').html('');
+                        $('#molecule-text').html('');
                         if (data.text.length < 200) {
                             $('#debug').text('粘贴了文本: ' + data.text);
                         } else {
@@ -425,7 +421,7 @@ based on https://molview.org/ and osra
 
                     });
 
-                    var imgContainer = document.getElementById("imgContainer");
+                    let imgContainer = document.getElementById("imgContainer");
                     imgContainer.ondragover = function (e) {
                         e.preventDefault();
                         this.style.borderColor = 'red';
@@ -436,18 +432,20 @@ based on https://molview.org/ and osra
                         if (e.dataTransfer.files.length > 1) {
                             swal('拖放文件过多', '目前每次只支持拖放一张图片', 'error');
                             $('#debug').text('拖放文件过多');
-                            $('#molText').html('');
+                            $('#ocrMsg').html('');
+                            $('#molecule-text').html('');
                         } else {
                             const fileObj = e.dataTransfer.files[0];
                             if (fileObj.type.indexOf('image') !== -1) {
                                 $('#debug').text('拖放了图片: "' + fileObj.name + '"  大小: ' + fileObj.size);
                                 sendMolImage(fileObj);
                                 const blob = window.URL.createObjectURL(fileObj);
-                                $('.box').html('<img src="' + blob + '" />'); // " style="max-height:300px; max-width:600px"
+                                $('.box').html('<img src="' + blob + '" alt=""/>'); // " style="max-height:300px; max-width:600px"
 
                             } else {
                                 $('#debug').text('拖放了非图片文件: "' + fileObj.name + '"');
-                                $('#molText').html('');
+                                $('#ocrMsg').html('');
+                                $('#molecule-text').html('');
                                 swal('拖放了非图片文件', '只支持jpg/png/gif等图片文件', 'error');
                             }
                         }
@@ -458,10 +456,11 @@ based on https://molview.org/ and osra
                 <div class="box">
                     <h3>使用方法：</h3>
                     <p>step.0 在电脑上使用Chrome/Firefox等现代浏览器访问此网页</p>
-                    <p>step.1 使用QQ/微信等截图软件, 截取文献中的结构式</p>
+                    <p>step.1 使用QQ/微信等截图软件, 截取文献中的化学结构式</p>
                     <p>step.2 单击此处，在此处(Ctrl+V)粘贴截图</p>
-                    <p>step.3 单击画板菜单栏中的“复制”按钮</p>
-                    <p>step.4 在KingDraw中右键 选择性粘贴 > MOL V2000(暂无快捷键)</p>
+                    <p>step.3 视情况使用编辑器修正识别到的结构式</p>
+                    <p>step.4 单击画板菜单栏中的“复制”按钮</p>
+                    <p>step.5 在KingDraw中右键 选择性粘贴 > MOL V2000(暂无快捷键)</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 在ChemDraw中右键 paste special > MOL
                         TEXT
                         (Alt+Shift+Ctrl+P)</p>
@@ -469,13 +468,14 @@ based on https://molview.org/ and osra
             </div>
             <div style="background: #b3d4fc">
                 <p><span id="debug"></span></p>
-                <p><span id="molText"></span></p>
+                <p><span id="ocrMsg"></span></p>
                 <p id="molecule-text"></p>
             </div>
             <div id="demoAndDoc">
                 <p>
-                    <a href="doc/demo.mp4" target="_blank">演示视频</a> |
-                    <a href="https://github.com/def-fun/molOCR/blob/master/README.md" target="_blank">帮助</a>
+                    <a href="doc/demo.mp4" target="_blank">👀演示视频</a> |
+                    <a href="https://github.com/def-fun/molOCR/issues" target="_blank">💌反馈</a> |
+                    <a href="https://github.com/def-fun/molOCR/blob/master/README.md" target="_blank">ℹ️帮助</a>
                 </p>
 
             </div>
