@@ -449,6 +449,13 @@ body {
     overflow: hidden
 }
 
+#demoAndDoc {
+    position: absolute;
+    bottom: 10px;
+    left: 40%;
+    overflow: hidden；
+}
+
 .layout-model > #ocr, .layout-hsplit > #ocr {
     left: 0
 }
