@@ -126,8 +126,29 @@ function sendMolImage(img_blob) {
 }
 
 function copyMolecule() {
+    // 修改textarea中的内容，选中，复制，提示复制成功
     let obj = $("#molecule-text");
     obj.html('<textarea style="width: 100%" rows="10" readonly>' + Sketcher.getMOL().replace('MolView', 'MOL TEXT\nMolView') + '</textarea>');
     obj.context.getElementsByTagName("textarea")[0].select();
     document.execCommand("Copy");
+
+    // https://codeseven.github.io/toastr/demo.html
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "500",
+        "timeOut": "800",
+        "extendedTimeOut": "500",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+    toastr.success("复制成功");
 }
