@@ -1,7 +1,7 @@
 # molOCR
 
-基于[osra](https://cactus.nci.nih.gov/osra/)的化学结构式识别工具。
-
+基于 [osra](https://cactus.nci.nih.gov/osra/) 的化学结构式识别工具。
+![index.png](https://i.loli.net/2020/09/02/UFfpWiqHzKJd8XI.png)
 
 ## 使用
 向网页右侧拖入图片或者粘贴截图之后，等待几秒后，被识别到的化学结构式会被红色方框标记出来。点击红色方框，左侧的编辑器会显示出根据识别结果绘制的结构式。如果识别有偏差，可以使用编辑器修改结构。
