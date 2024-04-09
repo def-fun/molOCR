@@ -2,8 +2,8 @@ let molTexts = []; // MOL TEXT的列表
 let molArr = []; // 也是MOL TEXT的列表，但是包含id和坐标信息 {'text': '...', id: 1, x1: 1, x2: 2, y1: 3, y2: 4}
 let ctx;  // canvas 2D对象
 let rawImgData; // 带红框标记的图片，每次单击选中高亮的时候用这个数据初始化canvas
-let OCR_API_URL = 'http://' + window.location.hostname + ':17005/image2ctab';
-// let OCR_API_URL = 'http://47.97.40.225:17005/image2ctab';
+let OCR_API_URL = 'http://' + window.location.hostname + ':5000/image2ctab';  //根据实际情况修改API的地址
+// let OCR_API_URL = 'http://192.168.114.134:5000/image2ctab';
 
 function playWithThisMolFile(obj) {
     // 显示并复制结构式
@@ -69,10 +69,13 @@ function sendMolImage(img_blob) {
     $('#ocrMsg').text('加载中...');
     let xhr = new XMLHttpRequest();
     xhr.open('POST', OCR_API_URL);
-    if (img_blob.name){
+    if (img_blob.type) {
         xhr.setRequestHeader('Content-type', img_blob.type);
-    }else {
+    } else if (img_blob.blob) {
         xhr.setRequestHeader('Content-type', img_blob.blob.type);
+    } else {
+        console.log(img_blob)
+        swal('不支持的输入', '未预料到的图片格式，请F12查看console输出，将信息反馈给开发者', 'error');
     }
     xhr.send(img_blob);
     xhr.onreadystatechange = function () {
@@ -124,7 +127,7 @@ function sendMolImage(img_blob) {
 
             } else {
                 $('#ocrMsg').text('上传失败');
-                swal('上传失败', '可能是图片过大、网络故障或服务器离线', 'error');
+                swal('上传失败', '可能是图片过大、网络故障或服务器离线，当前服务器接口为 ' + OCR_API_URL  , 'error');
             }
         }
     }
