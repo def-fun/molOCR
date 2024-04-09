@@ -14,7 +14,7 @@
 
 ## 部署
 
-1. 安装后端： [修改版的chembl_beaker](https://github.com/def-fun/chembl_beaker/tree/v1.1)
+1. 安装后端： [修改版的chembl_beaker](https://github.com/def-fun/chembl_beaker)
 2. 下载这个项目，解压到HTTP服务器目录下。或者使用`python3 -m http.server`运行HTTP服务
 3. 视情况修改`js/img2mol.js`中的`OCR_API_URL`。如果chembl_beaker服务器和HTTP服务器在同一个主机上，则不需要做修改。
 
